@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 //Database
 //___________________
 // How to connect to the database either via heroku or locally
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/'+ `YOUR DATABASE NAME`;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/3000'
 
 // Connect to Mongo
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
@@ -46,9 +46,9 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
-app.get('/' , (req, res) => {
-    res.send('Hello World!');
-  });
+// app.get('/' , (req, res) => {
+//     res.send('Hello World!');
+//   });
   
   //___________________
   //Listener
