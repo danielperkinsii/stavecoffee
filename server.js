@@ -6,6 +6,8 @@ const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
+const staveCoffeeController = require('./controllers/stavecoffee.js');
+
 //___________________
 //Port
 //___________________
@@ -42,10 +44,14 @@ app.use(express.json());// returns middleware that only parses JSON - may or may
 
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
+// use controller file in server.js
+app.use(staveCoffeeController);
+
+
 //___________________
 // Routes
 //___________________
-//localhost:3000
+// localhost:3000
 // app.get('/' , (req, res) => {
 //     res.send('Hello World!');
 //   });
