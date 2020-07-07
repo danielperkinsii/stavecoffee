@@ -5,11 +5,14 @@ const router = express.Router()
 // Routes
 
 // test connection route
-router.get('/stavecoffee', (req, res)=>{
-    res.send('router connected')
+router.get('/', (req, res)=>{
+    res.render('index.ejs')
 })
 
-// 
+// new review
+router.get('/stavecoffee', (req, res)=>{
+    res.send('leave us a review!')
+})
 
 
 
