@@ -10,8 +10,8 @@ router.get('/', (req, res)=>{
 })
 
 // new review
-router.get('/stavecoffee', (req, res)=>{
-    res.send('leave us a review!')
+router.get('/blog', (req, res)=>{
+    res.render('reviews.ejs')
 })
 
 
