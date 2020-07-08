@@ -20,6 +20,9 @@ router.post('/blog', (req,res)=>{
     } else {
         req.body.firstTime = false
     }
+    Review.create(req.body, (err, createdReview)=>{
+        res.send(createdReview)
+    })
 })
 
 
