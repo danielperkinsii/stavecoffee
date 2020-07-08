@@ -31,6 +31,7 @@ router.post('/blog', (req,res)=>{
     })
 })
 
+// show route
 router.get('/blog/:id', (req, res)=>{
     Review.findById(req.params.id, (err, foundReview)=>{
         res.render('show.ejs', {
@@ -39,7 +40,23 @@ router.get('/blog/:id', (req, res)=>{
     })
 })
 
+// delete route
+router.delete('/blog/:id', (req, res)=>{
+    Review.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/blog')
+    })
+})
 
-
+// edit routes
+router.get('/blog/:id/edit', (req, res)=>{
+    Review.findById(req.params.id, (err, foundReview)=>{
+        res.render(
+            'edit.ejs',
+                {
+                    reviews: foundReview
+                }
+        )
+    })
+})
 
 module.exports = router

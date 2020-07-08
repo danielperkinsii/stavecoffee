@@ -35,6 +35,18 @@
                 <h6><%= reviews[i].name %> is a first time Stave Coffee drinker</h6>
             <% } else { %> <h6><%= reviews[i].name %> is a veteran Stave Coffee drinker</h6>
             <% } %>
+            <ul>
+                <li>
+                    <a href='/blog/<%= reviews[i].id %>/edit'>Edit</a>
+                </li>
+                <li>
+                    <form action='/blog/<%= reviews[i].id %>?_method=DELETE' method='POST'>
+                    <input type="submit" value="DELETE"/>
+                    </form>
+                </li>
+            </ul>
+            
+            
        <% } %>
 
     </div>
