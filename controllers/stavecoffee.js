@@ -59,4 +59,15 @@ router.get('/blog/:id/edit', (req, res)=>{
     })
 })
 
+router.put('/blog/:id', (req, res)=>{
+    if (req.body.firstTime === 'on'){
+        req.body.firstTime = true
+    } else {
+        req.body.firstTime = false
+    }
+    Review.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updateModel)=>{
+        res.redirect('/blog')
+    })
+})
+
 module.exports = router
