@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+</head>
+<body>
+    <h5><%= reviews.name %></h5>
+    <h5><%= reviews.title %></h5>
+    <p><%= reviews.review %></p>
+        <% if (reviews.firstTime === true) { %>
+    <h6><%= reviews.name %> is a first time Stave Coffee drinker</h6>
+        <% } else { %> 
+    <h6><%= reviews.name %> is a veteran Stave Coffee drinker</h6>
+        <% } %>
+       
+</body>
+</html>

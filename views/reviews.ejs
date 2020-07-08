@@ -12,8 +12,10 @@
         <nav><ul><li><a href='/'>Back to Store</a></li></ul></nav>
     </header>
     <h3>Leave us a review!</h3>
+    
     <div class='container'>
-        <form>
+        
+        <form action='/blog' method='POST'>
             <label for='title'>Add a headline</label>
             <input type='text' name='title' value='What is most important to know?' id='title'><br>
             <label for='review'>Write your review</label>
@@ -24,6 +26,16 @@
             <input type='checkbox' name='firstTime'><br>
             <input type='submit' value='Submit'>
         </form>
+
+        <% for(let i=0; i<reviews.length; i++) { %>
+            <h5><%= reviews[i].name %></h5>
+            <a href='/blog/<%= reviews[i].id %>'><h5><%= reviews[i].title %></h5></a>
+            <p><%= reviews[i].review %></p>
+            <% if (reviews[i].firstTime === true) { %>
+                <h6><%= reviews[i].name %> is a first time Stave Coffee drinker</h6>
+            <% } else { %> <h6><%= reviews[i].name %> is a veteran Stave Coffee drinker</h6>
+            <% } %>
+       <% } %>
 
     </div>
    

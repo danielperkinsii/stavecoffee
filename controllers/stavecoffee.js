@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const Review = require('./models/fruits.js')
+const Review = require('../models/reviews.js')
+
 // Routes
 
 // test connection route
@@ -11,9 +12,14 @@ router.get('/', (req, res)=>{
 
 // new review
 router.get('/blog', (req, res)=>{
-    res.render('reviews.ejs')
-})
+    Review.find({}, (err, allReviews)=>{
+        res.render('reviews.ejs', {
+        reviews: allReviews
+        })
+    })
+})  
 
+// create route
 router.post('/blog', (req,res)=>{
     if (req.body.firstTime === 'on'){
         req.body.firstTime = true
@@ -21,9 +27,18 @@ router.post('/blog', (req,res)=>{
         req.body.firstTime = false
     }
     Review.create(req.body, (err, createdReview)=>{
-        res.send(createdReview)
+        res.redirect('/blog')
     })
 })
+
+router.get('/blog/:id', (req, res)=>{
+    Review.findById(req.params.id, (err, foundReview)=>{
+        res.render('show.ejs', {
+            reviews: foundReview
+        })
+    })
+})
+
 
 
 
