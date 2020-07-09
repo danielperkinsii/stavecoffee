@@ -48,6 +48,20 @@ router.get('/', (req, res)=>{
     })
 })
 
+// Guatemala
+router.get('/guatemala', (req, res)=>{
+    res.render('products/guatemala.ejs', {
+        currentUser: req.session.currentUser
+    })
+})
+
+// Peru
+router.get('/peru', (req, res)=>{
+    res.render('products/peru.ejs', {
+        currentUser: req.session.currentUser
+    })
+})
+
 // new review
 router.get('/blog', isAuthenticated, (req, res)=>{
     Review.find({}, (err, allReviews)=>{
