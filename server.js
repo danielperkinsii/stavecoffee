@@ -9,7 +9,7 @@ const db = mongoose.connection
 const staveCoffeeController = require('./controllers/stavecoffee.js')
 require('dotenv').config()
 const session = require('express-session')
-const userController = require('./controllers/users_controller.js')
+const user = require('./controllers/users.js')
 
 //___________________
 //Port
@@ -50,6 +50,10 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // use controller file in server.js
 app.use(staveCoffeeController);
 
+// session controller
+const sessionController = require('./controllers/sessions.js')
+app.use('/session', sessionController)
+
 //express-session package
 app.use(
   session({
@@ -58,7 +62,9 @@ app.use(
     saveUninitialized: false
   })
 )
-app.use('/users', userController)
+
+//user controller
+app.use('/users', user)
 
 
 
