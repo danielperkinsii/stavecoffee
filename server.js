@@ -10,6 +10,7 @@ const staveCoffeeController = require('./controllers/stavecoffee.js')
 require('dotenv').config()
 const session = require('express-session')
 const user = require('./controllers/users.js')
+const sessionController = require('./controllers/sessions.js')
 
 //___________________
 //Port
@@ -51,8 +52,7 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 app.use(staveCoffeeController);
 
 // session controller
-const sessionController = require('./controllers/sessions.js')
-app.use('/session', sessionController)
+app.use('/sessions', sessionController)
 
 //express-session package
 app.use(
