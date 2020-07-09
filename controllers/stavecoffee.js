@@ -62,6 +62,13 @@ router.get('/peru', (req, res)=>{
     })
 })
 
+// founders
+router.get('/ourfounders', (req, res)=>{
+    res.render('founders.ejs', {
+        currentUser: req.session.currentUser
+    })
+})
+
 // new review
 router.get('/blog', isAuthenticated, (req, res)=>{
     Review.find({}, (err, allReviews)=>{
