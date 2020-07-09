@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>session navigator</title>
+</head>
+<body>
+    <ul class="right">
+        <li><a href="/blog">Write a blog</a></li>
+        <% if (currentUser) { %>
+        <li>Welcome <%= currentUser.username %></li>
+        <li>
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input type="submit" value="Log Out" class="" />
+          </form>
+        </li>
+        <% } else { %>
+        <li><a href="/users/new">Sign Up</a></li>
+        <li><a href="/sessions/new">Log In</a></li>
+        <% } %>
+      </ul>
+</body>
+</html>

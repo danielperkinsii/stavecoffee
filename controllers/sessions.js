@@ -1,8 +1,12 @@
 const express = require('express')
+const bcrypt = require('bcrypt')
 const sessionsRouter = express.Router()
+const User = require('../models/users')
 
 sessionsRouter.get('/new', (req, res)=>{
-    res.render('sessions/new.ejs')
+    res.render('sessions/new.ejs', {
+    currentUser: req.session.currentUser
+    })
 })
 
 sessionsRouter.post('/', (req, res)=>{
@@ -11,7 +15,7 @@ sessionsRouter.post('/', (req, res)=>{
         if (err) {
             console.log(err)
             res.send('opps, the database had a problem')
-        } else if (foundUser) {
+        } else if (!foundUser) {
             // let user know that no user exists with that username
             res.send('<a href="/">Sorry, user not found.</a>')
         } else {

@@ -16,7 +16,7 @@ const sessionController = require('./controllers/sessions.js')
 //Port
 //___________________
 // Allow use of Heroku's port or your own local port, depending on the environment
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 
 //___________________
 //Database
@@ -25,34 +25,32 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/3000'
 
 // Connect to Mongo
-mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
+mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true})
 
 // Error / success
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
-db.on('disconnected', () => console.log('mongo disconnected'));
+db.on('error', (err) => console.log(err.message + ' is Mongod not running?'))
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI))
+db.on('disconnected', () => console.log('mongo disconnected'))
 
 // open the connection to mongo
-db.on('open' , ()=>{});
+db.on('open' , ()=>{})
 
 //___________________
 //Middleware
 //___________________
 
 //use public folder for static assets
-app.use(express.static('public'));
+app.use(express.static('public'))
 
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
-app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
-app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use(express.urlencoded({ extended: false }))// extended: false - does not allow nested objects in query strings
+app.use(express.json())// returns middleware that only parses JSON - may or may not need it depending on your project
 
 //use method override
-app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
-// use controller file in server.js
-app.use(staveCoffeeController);
+app.use(methodOverride('_method'))// allow POST, PUT and DELETE from a form
 
-// session controller
-app.use('/sessions', sessionController)
+
+
 
 //express-session package
 app.use(
@@ -66,7 +64,10 @@ app.use(
 //user controller
 app.use('/users', user)
 
-
+// use controller file in server.js
+app.use(staveCoffeeController);
+// session controller
+app.use('/sessions', sessionController)
 
 
 //___________________
@@ -80,4 +81,4 @@ app.use('/users', user)
   //___________________
   //Listener
   //___________________
-  app.listen(PORT, () => console.log( 'Listening on port:', PORT));
+  app.listen(PORT, () => console.log( 'Listening on port:', PORT))

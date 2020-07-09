@@ -3,51 +3,63 @@ const router = express.Router()
 
 const Review = require('../models/reviews.js')
 
+// access restriction middleware
+const isAuthenticated = (req, res, next)=>{
+    if (req.session.currentUser) {
+        return next()
+    } else {
+        res.redirect('/sessions/new')
+    }
+}
+
 // Routes
 
-// seed route
-router.get('/blog/seed', (req, res)=>{
-    Review.create([
-        {
-            title: 'coffee good',
-            review: 'coffee is good',
-            name: 'Good Coffee Guy',
-            firstTime: true
-        },
-        {
-            title: 'coffee okay',
-            review: 'coffee is okay',
-            name: 'Okay Coffee Guy',
-            firstTime: true
-        },
-        {
-            title: 'coffee bad',
-            review: 'coffee is bad',
-            name: 'Bad Coffee Guy',
-            firstTime: true
-        }
-    ], (err, data)=>{
-        res.redirect('/blog')
-    }
-    )
-})
+// // seed route
+// router.get('/blog/seed', (req, res)=>{
+//     Review.create([
+//         {
+//             title: 'coffee good',
+//             review: 'coffee is good',
+//             name: 'Good Coffee Guy',
+//             firstTime: true
+//         },
+//         {
+//             title: 'coffee okay',
+//             review: 'coffee is okay',
+//             name: 'Okay Coffee Guy',
+//             firstTime: true
+//         },
+//         {
+//             title: 'coffee bad',
+//             review: 'coffee is bad',
+//             name: 'Bad Coffee Guy',
+//             firstTime: true
+//         }
+//     ], (err, data)=>{
+//         res.redirect('/blog')
+//     }
+//     )
+// })
 
 // index route
 router.get('/', (req, res)=>{
-    res.render('index.ejs')
+    res.render('index.ejs', {
+        currentUser: req.session.currentUser
+    })
 })
 
 // new review
-router.get('/blog', (req, res)=>{
+router.get('/blog', isAuthenticated, (req, res)=>{
     Review.find({}, (err, allReviews)=>{
         res.render('reviews.ejs', {
-        reviews: allReviews
+        reviews: allReviews, 
+        currentUser: req.session.currentUser
         })
     })
 })  
 
 // create route
-router.post('/blog', (req,res)=>{
+router.post('/blog', isAuthenticated, (req,res)=>{
     if (req.body.firstTime === 'on'){
         req.body.firstTime = true
     } else {
@@ -59,34 +71,36 @@ router.post('/blog', (req,res)=>{
 })
 
 // show route
-router.get('/blog/:id', (req, res)=>{
+router.get('/blog/:id', isAuthenticated, (req, res)=>{
     Review.findById(req.params.id, (err, foundReview)=>{
         res.render('show.ejs', {
-            reviews: foundReview
+            reviews: foundReview,
+            currentUser: req.session.currentUser
         })
     })
 })
 
 // delete route
-router.delete('/blog/:id', (req, res)=>{
+router.delete('/blog/:id', isAuthenticated, (req, res)=>{
     Review.findByIdAndRemove(req.params.id, (err, data)=>{
         res.redirect('/blog')
     })
 })
 
 // edit routes
-router.get('/blog/:id/edit', (req, res)=>{
+router.get('/blog/:id/edit', isAuthenticated, (req, res)=>{
     Review.findById(req.params.id, (err, foundReview)=>{
         res.render(
             'edit.ejs',
                 {
-                    reviews: foundReview
+                    reviews: foundReview,
+                    currentUser: req.session.currentUser
                 }
         )
     })
 })
 
-router.put('/blog/:id', (req, res)=>{
+router.put('/blog/:id', isAuthenticated, (req, res)=>{
     if (req.body.firstTime === 'on'){
         req.body.firstTime = true
     } else {
