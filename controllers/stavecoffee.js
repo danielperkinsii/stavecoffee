@@ -1,4 +1,5 @@
 const express = require('express')
+const User = require('../models/users.js')
 const router = express.Router()
 
 const Review = require('../models/reviews.js')
@@ -11,6 +12,8 @@ const isAuthenticated = (req, res, next)=>{
         res.redirect('/sessions/new')
     }
 }
+
+// 
 
 // Routes
 
@@ -71,9 +74,9 @@ router.get('/ourfounders', (req, res)=>{
 
 // new review
 router.get('/blog', isAuthenticated, (req, res)=>{
-    Review.find({}, (err, allReviews)=>{
+    User.find({}, (err, allUsers)=>{
         res.render('reviews.ejs', {
-        reviews: allReviews, 
+        users: allUsers, 
         currentUser: req.session.currentUser
         })
     })
@@ -81,22 +84,30 @@ router.get('/blog', isAuthenticated, (req, res)=>{
 
 // create route
 router.post('/blog', isAuthenticated, (req,res)=>{
-    if (req.body.firstTime === 'on'){
-        req.body.firstTime = true
-    } else {
-        req.body.firstTime = false
-    }
-    Review.create(req.body, (err, createdReview)=>{
-        res.redirect('/blog')
+    User.findById(req.body.userId, (err, foundUser)=>{
+        if (req.body.firstTime === 'on'){
+            req.body.firstTime = true
+        } else {
+            req.body.firstTime = false
+        }
+        Review.create(req.body, (err, createdReview)=>{
+            foundUser.reviews.push(createdReview)
+            foundUser.save((err, data)=>{
+                res.redirect('/blog')
+            })
+        })
     })
 })
 
 // show route
 router.get('/blog/:id', isAuthenticated, (req, res)=>{
     Review.findById(req.params.id, (err, foundReview)=>{
-        res.render('show.ejs', {
-            reviews: foundReview,
-            currentUser: req.session.currentUser
+        User.findOne({'reviews._id': req.params.id}, (err, foundUser)=>{
+            res.render('show.ejs', {
+                user: foundUser,
+                review: foundReview,
+                currentUser: req.session.currentUser
+            })
         })
     })
 })
@@ -104,7 +115,12 @@ router.get('/blog/:id', isAuthenticated, (req, res)=>{
 // delete route
 router.delete('/blog/:id', isAuthenticated, (req, res)=>{
     Review.findByIdAndRemove(req.params.id, (err, data)=>{
-        res.redirect('/blog')
+        User.findOne({'reviews._id': req.params.id}, (err, foundUser)=>{
+            foundUser.reviews.id(req.params.id).remove()
+            foundUser.save((err, data)=>{
+                res.redirect('/blog')
+            })
+        })
     })
 })
 
