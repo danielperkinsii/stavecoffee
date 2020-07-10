@@ -1,7 +1,6 @@
 const express = require('express')
 const User = require('../models/users.js')
 const router = express.Router()
-
 const Review = require('../models/reviews.js')
 
 // access restriction middleware
@@ -12,8 +11,6 @@ const isAuthenticated = (req, res, next)=>{
         res.redirect('/sessions/new')
     }
 }
-
-// 
 
 // Routes
 
@@ -83,20 +80,28 @@ router.get('/blog', isAuthenticated, (req, res)=>{
 })  
 
 // create route
-router.post('/blog', isAuthenticated, (req,res)=>{
-    User.findById(req.body.userId, (err, foundUser)=>{
-        if (req.body.firstTime === 'on'){
-            req.body.firstTime = true
+router.post('/blog', isAuthenticated, (req, res)=>{
+    console.log(req.body)
+    if (req.body.firstTime === 'on'){
+        req.body.firstTime = true
+    } else {
+        req.body.firstTime = false
+    }
+    Review.create(req.body, (err, createdReview)=>{
+        if (err) {
+            console.log(err)
         } else {
-            req.body.firstTime = false
-        }
-        Review.create(req.body, (err, createdReview)=>{
-            foundUser.reviews.push(createdReview)
-            foundUser.save((err, data)=>{
-                res.redirect('/blog')
+            User.findByIdAndUpdate(req.session.currentUser._id, {$push: { reviews: createdReview}}, (err, data)=>{
+                if(err) {
+                    console.log('there was an error')
+                } else {
+                    console.log(data)
+                }
             })
-        })
+            res.redirect('/blog')
+        }
     })
+    
 })
 
 // show route
