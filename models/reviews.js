@@ -5,12 +5,6 @@ const reviewSchema = new mongoose.Schema({
     review: {type: String, required: true},
     name: {type: String},
     firstTime: Boolean,
-    comments: [
-        {
-            type: mongoose.ObjectId,
-            ref: 'Comment'
-        },
-    ],
 	favs:  Number
 	
 },

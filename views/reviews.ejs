@@ -25,14 +25,28 @@
             <input type='checkbox' name='firstTime'><br/>
             <input type='submit' value='Submit'>
         </form>
-       
-    <% for (i=0; i<users.length; i++) { %>
-        <% for (j=0; j<users[i].reviews.length; j++) { %> 
-                <p><%= users[i].reviews[j].title   %>   </p>
+        
+<div>
+    <% for (i=0; i<users.length; i++) { %> <% for (j=0; j<users[i].reviews.length; j++) { %> 
+        <p><%= users[i]._id %></p>
+    <div><h5><a href='/blog/<%=users[i]._id%>'><%= users[i].reviews[j].title %></a></h5>
+            <p><%= users[i].reviews[j].review %></p>
+        <h6><%if (users[i].reviews[j].firstTime) { %> By: <%= users[i].username %>, First Time Stave Coffee Drinker <% } else { %> By: <%= users[i].username %>,  Veteran Stave Coffee Drinker<% } %> </h6>
+        <a href='blog/<%= users[i].reviews[j]._id %>/edit'> EDIT </a>
+        
+            <form action='/blog/<%=users[i].reviews[j]._id %>?_method=DELETE' method='POST'>
+            <input type='submit' value='DELETE'/>
+            </form>
+        </div>
         <% } %>
-
-
     <% } %>
+    </div>        
+                
+                
+      
+
+
+   
                
           
           

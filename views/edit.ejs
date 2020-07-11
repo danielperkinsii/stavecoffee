@@ -6,17 +6,15 @@
     <title>Edit Blog Page</title>
 </head>
 <body>
-    <form action='/blog/<%= reviews.id %>?_method=PUT' method='POST'>
+    <form action='/blog/<%=  %>?_method=PUT' method='POST'>
         <label for='title'>Change your headline</label>
-        <input type='text' name='title' value='<%= reviews.title %>' id='title'><br/>
+        <input type='text' name='title' value='<%=  %>' id='title'><br/>
         <label for='review'>Write your review</label>
-        <input type='text' name='review' value='<%= reviews.review %>' id='title'><br/>
+        <input type='text' name='review' value='<%=  %>' id='title'><br/>
         <label for='name'>Name</label>
-        <input type='text' name='name' value='<%= reviews.name %>' id='title'><br/>
+        <input type='text' name='name' value='<%=  %>' id='title'><br/>
         <label for='firstTime'>Is this your first time trying this roast?</label>
-        <input type='checkbox' name='firstTime' <% if(reviews.firstTime === true) { %>
-            checked
-            <% } %> /><br/>
+        <input type='checkbox' name='firstTime' 
         <input type='submit' value='Submit'>
     </form>
     
