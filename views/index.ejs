@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Stave Coffee Home</title>
+    <%- include ('./partials/head.ejs') %>
 </head>
 <body>
-    <header>
-        <h3><a href='/'>Stave Coffee</a></h3>
-        <%- include('./partials/nav.ejs') %>
-        <nav>
-            <ul>
-                <li><a href='/ourfounders'>Our Founders</a></li>
-                <li><a href='/blog'>Blog</a></li>
-                <li>Cart</li>
-            </ul>
-        </nav>
-</header>
+    <!-- HEADER -->
+    <%- include ('./partials/header.ejs') %>
+
+
     <div class='container'>
         <div><a href='/guatemala'>Guatemala</a></div>
         <div><a href='/peru'>Peru</a></div>

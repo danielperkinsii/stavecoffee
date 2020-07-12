@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Page</title>
+    <%- include ('./partials/head.ejs') %>
 </head>
 <body>
-    <h1>show page</h1>
+        <!-- HEADER -->
+    <%- include ('./partials/head.ejs') %>
     <h2> <%= reviews.title %> </h2>
     <h3><%= reviews.review %></h3>
     <h4><%= reviews.firstTime %></h4>
