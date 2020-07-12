@@ -6,6 +6,8 @@
 <body>
     <!-- HEADER -->
     <%- include ('./partials/head.ejs') %>
+
+    <!-- PAGE CONTENT -->
     <form action='/blog/<%= reviews._id %>?_method=PUT' method='POST'>
         <label for='title'>Change your headline</label>
         <input type='text' name='title' value='<%= reviews.title %>' id='title'><br/>
@@ -16,7 +18,8 @@
         <input type='checkbox' name='firstTime'/><br/> 
         <input type='submit' value='Submit'/>
     </form>
-    <!-- Footer -->
+    
+    <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>
 </body>
 </html>
