@@ -107,13 +107,9 @@ router.post('/blog', isAuthenticated, (req, res)=>{
 // show route
 router.get('/blog/:id', isAuthenticated, (req, res)=>{ 
     Review.findById(req.params.id, (err, foundReview)=>{
-        console.log(req.params.id)
-        User.findOne({'reviews._id': req.params.id}, (err, foundUser)=>{
-            res.render('show.ejs', {
-                user: foundUser,
-                review: foundReview,
+        res.render('show.ejs', {
+                reviews: foundReview,
                 currentUser: req.session.currentUser
-            })
         })
     })
 })
@@ -150,13 +146,15 @@ router.put('/blog/:id', isAuthenticated, (req, res)=>{
         req.body.firstTime = false
     }
     Review.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedReview)=>{
-        User.findOne(({'users._id': req.params.id}, (err, foundUser)=>{
+        User.findOne({'reviews._id': req.params.id}, (err, foundUser)=>{
+            console.log(req.params.id)
+            console.log(foundUser)
             foundUser.reviews.id(req.params.id).remove()
             foundUser.reviews.push(updatedReview)
             foundUser.save((err, data)=>{
                 res.redirect('/blog/'+req.params.id)
             })
-        }))
+        })
     })
 })
 

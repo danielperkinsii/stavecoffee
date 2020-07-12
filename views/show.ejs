@@ -7,5 +7,9 @@
 </head>
 <body>
     <h1>show page</h1>
+    <h2> <%= reviews.title %> </h2>
+    <h3><%= reviews.review %></h3>
+    <h4><%= reviews.firstTime %></h4>
+    <small> Created by <%= currentUser.username %> on <%= reviews.createdAt %></small>
 </body>
 </html>
