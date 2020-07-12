@@ -8,12 +8,9 @@
     <%- include ('./partials/header.ejs') %>
 
     <!-- PAGE CONTENT -->
-    <h3>Leave us a review!</h3>
-    
     <div class='container'>
-        
+        <h3>Leave us a review!</h3>
         <form action='/blog' method='POST'>
-            
             <label for='title'>Add a headline</label><br/>
             <input type='text'  name='title' placeholder='What is most important to know?' id='title'/><br/>
             <label for='review'>Write your review</label><br/>
@@ -22,8 +19,7 @@
             <input type='checkbox' name='firstTime'><br/>
             <input type='submit' value='Submit'>
         </form>
-        
-<div>
+    <div>
     <% for (i=0; i<users.length; i++) { %> <% for (j=0; j<users[i].reviews.length; j++) { %> 
         <p><%= users[i]._id %></p>
     <div><h5><a href='/blog/<%=users[i].reviews[j]._id%>'><%= users[i].reviews[j].title %></a></h5>

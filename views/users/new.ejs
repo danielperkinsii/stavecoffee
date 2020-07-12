@@ -8,15 +8,16 @@
     <%- include ('../partials/head.ejs') %>
 
     <!-- PAGE CONTENT -->
-    <h1>sign up</h1>
-    <form action='/users' method='POST'>
-        <label>username</label><br/>
-        <input type='text' name='username'/><br/>
-        <label>password</label><br/>
-        <input type='password' name='password'/>
-        <input type='submit' value='Sign Up'/>
-    </form>
-
+    <div class='container'>
+        <h1>sign up</h1>
+        <form action='/users' method='POST'>
+            <label>username</label><br/>
+            <input type='text' name='username'/><br/>
+            <label>password</label><br/>
+            <input type='password' name='password'/>
+            <input type='submit' value='Sign Up'/>
+        </form>
+    </div>
     <!-- FOOTER -->
     <%- include ('../partials/footer.ejs') %>
 </body>

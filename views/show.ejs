@@ -8,11 +8,12 @@
     <%- include ('./partials/head.ejs') %>
 
     <!-- PAGE CONTENT -->
-    <h2> <%= reviews.title %> </h2>
-    <h3><%= reviews.review %></h3>
-    <h4><%= reviews.firstTime %></h4>
-    <small> Created by <%= currentUser.username %> on <%= reviews.createdAt %></small>
-    
+    <div class='container'>
+        <h2> <%= reviews.title %> </h2>
+        <h3><%= reviews.review %></h3>
+        <h4><%= reviews.firstTime %></h4>
+        <small> Created by <%= currentUser.username %> on <%= reviews.createdAt %></small>
+    </div>
     <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>
 </body>

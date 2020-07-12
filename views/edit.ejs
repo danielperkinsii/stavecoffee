@@ -8,17 +8,18 @@
     <%- include ('./partials/head.ejs') %>
 
     <!-- PAGE CONTENT -->
-    <form action='/blog/<%= reviews._id %>?_method=PUT' method='POST'>
-        <label for='title'>Change your headline</label>
-        <input type='text' name='title' value='<%= reviews.title %>' id='title'><br/>
-        <label for='review'>Write your review</label>
-        <input type='text' name='review' value='<%=  %>' id='title'><br/>
-        
-        <label for='firstTime'>Is this your first time trying this roast?</label>
-        <input type='checkbox' name='firstTime'/><br/> 
-        <input type='submit' value='Submit'/>
-    </form>
-    
+    <div class='container'>
+        <form action='/blog/<%= reviews._id %>?_method=PUT' method='POST'>
+            <label for='title'>Change your headline</label>
+            <input type='text' name='title' value='<%= reviews.title %>' id='title'><br/>
+            <label for='review'>Write your review</label>
+            <input type='text' name='review' value='<%=  %>' id='title'><br/>
+            
+            <label for='firstTime'>Is this your first time trying this roast?</label>
+            <input type='checkbox' name='firstTime'/><br/> 
+            <input type='submit' value='Submit'/>
+        </form>
+    </div>
     <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>
 </body>
