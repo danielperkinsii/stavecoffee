@@ -1,7 +1,7 @@
 # stavecoffee
 #### https://stavecoffee.herokuapp.com/
 ### Stave Coffee is a website based off of the business founded by brothers Jordan Loucks and John Loucks. 
-This app implements RESTful routing and includes full CRUD functionality found in the stavecoffee.js file. The app has a MVC structure and uses mongoose, node.js, html, css.
+This app implements RESTful routing and includes full CRUD functionality found in the stavecoffee.js file. The app has a MVC structure and uses mongoose, node.js, express, ejs, html, css.
 
 ### Main Page, Navigation, and Footer
 The main page is where you will find the two types of roasts that Stave Coffee currently has. The two pictures are clickable links that take you to the respective product pages.The Nav bar at the top is rendered on all pages and includes links to the Blog, Our Founders, Peru, Guatemala, Sign Up, and Sign In pages. The footer also renders on all pages and has the name of the company, the slogan, and an icon that takes you off website to Stave Coffee's instagram page. 
