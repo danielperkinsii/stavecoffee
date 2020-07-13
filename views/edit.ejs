@@ -5,21 +5,28 @@
 </head>
 <body>
     <!-- HEADER -->
-    <%- include ('./partials/head.ejs') %>
+    <%- include ('./partials/header.ejs') %>
 
     <!-- PAGE CONTENT -->
     <div class='container'>
+        <div class='row align-items-end' style='width: 100%; height: 2rem;'>
+        </div>
+        <h1 class='px-lg-4'>Edit your Post</h1>
+        <div class='row bg-light'>  
+            <div class='col py-4 px-lg-3'>
         <form action='/blog/<%= reviews._id %>?_method=PUT' method='POST'>
-            <label for='title'>Change your headline</label>
-            <input type='text' name='title' value='<%= reviews.title %>' id='title'><br/>
-            <label for='review'>Write your review</label>
-            <input type='text' name='review' value='<%=  %>' id='title'><br/>
+            <label for='title' >Change your headline</label><br/>
+            <input type='text' name='title' value='<%= reviews.title %>' size='50' id='title'><br/>
+            <label for='review'>Write your review</label><br/>
+            <textarea type='text' name='review' placeholder='<%= reviews.review %>' rows='5' cols='50' id='title'></textarea><br/>
             
             <label for='firstTime'>Is this your first time trying this roast?</label>
             <input type='checkbox' name='firstTime'/><br/> 
             <input type='submit' value='Submit'/>
         </form>
     </div>
+</div>
+</div>
     <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>
 </body>

@@ -5,14 +5,27 @@
 </head>
 <body>
         <!-- HEADER -->
-    <%- include ('./partials/head.ejs') %>
+    <%- include ('./partials/header.ejs') %>
 
     <!-- PAGE CONTENT -->
     <div class='container'>
-        <h2> <%= reviews.title %> </h2>
-        <h3><%= reviews.review %></h3>
-        <h4><%= reviews.firstTime %></h4>
-        <small> Created by <%= currentUser.username %> on <%= reviews.createdAt %></small>
+       <div class='row bg-light'>
+        <div class='col py-4 px-lg-3'>
+            <h2> <%= reviews.title %> </h2>
+            <p><%= reviews.review %></p>
+            <h6><%if (reviews.firstTime) { %> First Time Stave Coffee Drinker <% } else { %>  Veteran Stave Coffee Drinker<% } %> </h6><br/>
+            <div class='row'>
+                
+                    <small> Created on <%= reviews.createdAt %></small>
+                
+            </div>
+            <div class='row'>
+                
+                    <small> Updated on <%= reviews.updatedAt %></small>
+                
+            </div>
+        </div>
+       </div>
     </div>
     <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>

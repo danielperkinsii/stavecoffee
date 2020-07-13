@@ -8,37 +8,64 @@
     <%- include ('./partials/header.ejs') %>
 
     <!-- PAGE CONTENT -->
+
+    <!-- BLOG DRAFTING -->
+    <img class='img-fluid' style='object-fit: none; object-position: center; width: 100%; max-height: 250px; margin-bottom: 1rem;' src='https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'>
+
     <div class='container'>
-        <h3>Leave us a review!</h3>
-        <form action='/blog' method='POST'>
-            <label for='title'>Add a headline</label><br/>
-            <input type='text'  name='title' placeholder='What is most important to know?' id='title'/><br/>
-            <label for='review'>Write your review</label><br/>
-            <textarea name='review' placeholder='What did you like or dislike? How did you brew this roast?' id='title'></textarea><br/>
-            <label for='firstTime'>Is this your first time trying this roast?</label><br/>
-            <input type='checkbox' name='firstTime'><br/>
-            <input type='submit' value='Submit'>
-        </form>
-    <div>
-    <% for (i=0; i<users.length; i++) { %> <% for (j=0; j<users[i].reviews.length; j++) { %> 
-        <p><%= users[i]._id %></p>
-    <div><h5><a href='/blog/<%=users[i].reviews[j]._id%>'><%= users[i].reviews[j].title %></a></h5>
-            <p><%= users[i].reviews[j].review %></p>
-        <h6><%if (users[i].reviews[j].firstTime) { %> By: <%= users[i].username %>, First Time Stave Coffee Drinker <% } else { %> By: <%= users[i].username %>,  Veteran Stave Coffee Drinker<% } %> </h6>
-        <div id='edit_delete'>
-            <% if (currentUser.username === users[i].username) { %> 
-        <a href='blog/<%= users[i].reviews[j]._id %>/edit'> EDIT </a>
-        
-            <form action='/blog/<%=users[i].reviews[j]._id %>?_method=DELETE' method='POST'>
-            <input type='submit' value='DELETE'/>
-            </form>
+        <div class='row align-items-end' style='width: 100%; height: 5rem;'>
+            <h1 class='px-lg-4'>What's Brewin'?</h1>
+        </div>
+        <div class='row bg-light'>  
+            <div class='col py-4 px-lg-3'>
+                <form action='/blog' method='POST'>
+                    <label for='title'>Add a headline</label><br/>
+                    <input type='text'  name='title' placeholder='What is most important to know?' id='title' size='50'/><br/>
+                    <label for='review'>Write your review</label><br/>
+                    <textarea name='review' placeholder='What did you like or dislike? How did you brew this roast?' id='review' rows='5' cols='50'></textarea><br/>
+                    <label for='firstTime'>Is this your first time trying Stave Coffee?</label>
+                    <input type='checkbox' name='firstTime'><br/>
+                    <input type='submit' value='Submit' class='btn btn-primary'>
+                </form>  
+            </div>  
+        </div>
+
+        <!-- SPACE BETWEEN -->
+        <div class='row' style='width: 100%; height: 5rem;'></div>
+
+        <!-- BLOG POSTS -->
+        <div class='card'>
+    
+            <% for (i=0; i<users.length; i++) { %> <% for (j=0; j<users[i].reviews.length; j++) { %> 
+                
+            <div>
+                <h5 class='card-header'><a href='/blog/<%=users[i].reviews[j]._id%>'><%= users[i].reviews[j].title %></a></h5>
+                    <div class='card-body'>
+                        
+                        <p><%= users[i].reviews[j].review %></p>
+                        <h6><%if (users[i].reviews[j].firstTime) { %> By: <%= users[i].username %>, First Time Stave Coffee Drinker <% } else { %> By: <%= users[i].username %>,  Veteran Stave Coffee Drinker<% } %> </h6>
+                        <div class='row'>
+                        <% if (currentUser.username === users[i].username) { %> 
+                            <div class='col col-lg-2'>
+                            <a href='blog/<%= users[i].reviews[j]._id %>/edit' class='btn btn-light'> Edit </a>
+                            </div>
+                            <div class='col col-lg-2'>
+                            <form action='/blog/<%=users[i].reviews[j]._id %>?_method=DELETE' method='POST'>
+                                <input type='submit' value='Delete' class='btn btn-light'/>
+                            </form>
+                        </div>
+                        <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
             <% } %>
+                
         </div>
-        </div>
-        <% } %>
-    <% } %>
-    </div>        
     </div>
+
+
+
     <!-- FOOTER -->
     <%- include ('./partials/footer.ejs') %>
 </body>
