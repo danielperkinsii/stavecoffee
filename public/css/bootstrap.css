@@ -10276,3 +10276,8 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.insta-feed {
+  height: 875px;
+  overflow: auto;
+}
