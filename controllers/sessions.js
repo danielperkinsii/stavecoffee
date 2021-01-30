@@ -14,7 +14,7 @@ sessionsRouter.post('/', (req, res)=>{
     User.findOne({username: req.body.username}, (err, foundUser)=>{
         if (err) {
             console.log(err)
-            res.send('opps, the database had a problem')
+            res.send('oops, the database had a problem')
         } else if (!foundUser) {
             // let user know that no user exists with that username
             res.send('<a href="/">Sorry, user not found.</a>')
@@ -33,7 +33,7 @@ sessionsRouter.post('/', (req, res)=>{
 })
 
 sessionsRouter.delete('/', (req, res)=>{
-    req.session.destroy(()=>{
+    req.session.destroy(() => {
         res.redirect('/')
     })
 })

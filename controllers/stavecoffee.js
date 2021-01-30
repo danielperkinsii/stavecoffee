@@ -14,33 +14,6 @@ const isAuthenticated = (req, res, next)=>{
 
 // Routes
 
-// // seed route
-// router.get('/blog/seed', (req, res)=>{
-//     Review.create([
-//         {
-//             title: 'coffee good',
-//             review: 'coffee is good',
-//             name: 'Good Coffee Guy',
-//             firstTime: true
-//         },
-//         {
-//             title: 'coffee okay',
-//             review: 'coffee is okay',
-//             name: 'Okay Coffee Guy',
-//             firstTime: true
-//         },
-//         {
-//             title: 'coffee bad',
-//             review: 'coffee is bad',
-//             name: 'Bad Coffee Guy',
-//             firstTime: true
-//         }
-//     ], (err, data)=>{
-//         res.redirect('/blog')
-//     }
-//     )
-// })
-
 // index route
 router.get('/', (req, res)=>{
     res.render('index.ejs', {

@@ -41,7 +41,6 @@
             <div>
                 <h5 class='card-header'><a href='/blog/<%=users[i].reviews[j]._id%>'><%= users[i].reviews[j].title %></a></h5>
                     <div class='card-body'>
-                        
                         <p><%= users[i].reviews[j].review %></p>
                         <h6><%if (users[i].reviews[j].firstTime) { %> By: <%= users[i].username %>, First Time Stave Coffee Drinker <% } else { %> By: <%= users[i].username %>,  Veteran Stave Coffee Drinker<% } %> </h6>
                         <div class='row'>
@@ -60,7 +59,6 @@
                 </div>
                 <% } %>
             <% } %>
-                
         </div>
     </div>
 
